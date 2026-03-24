@@ -1,0 +1,8 @@
+# INSTRUCTIONS:
+# Install these packages using pip
+
+flask
+sqlalchemy
+pymysql
+python-dotenv
+werkzeug
