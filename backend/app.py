@@ -16,7 +16,7 @@ from extensions import db
 # TODO: import config settings
 from config import Config
 # TODO: import route blueprints
-
+from routes.auth_routes import auth_bp
 # TODO: initialize Flask app
 app = Flask(__name__)
 
@@ -30,9 +30,7 @@ from models import User
 with app.app_context():
      db.create_all()
 # TODO: register routes (e.g., auth routes)
-@app.route('/')
-def index():
-    return "Hello World!!"
+app.register_blueprint(auth_bp, url_prefix="/auth")
 
 print(app.config["SQLALCHEMY_DATABASE_URI"])
 
