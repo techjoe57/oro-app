@@ -15,7 +15,7 @@ from flask import Blueprint, request, jsonify
 from extensions import db
 from models import User
 # TODO: create blueprint
-auth_bp = Blueprint('auth', __name__)
+auth_bp = Blueprint('auth', __name__,url_prefix='/api')
 
 # TODO: create /register route
 # Steps:
@@ -93,3 +93,7 @@ def login():
         return jsonify({"message": "wrong password"}), 401
     
     return jsonify({"message": "Login successful","user":{"email":email}}), 200
+
+@auth_bp.route('/test', methods=['GET'])
+def test():
+    return {"message": "API is working"}

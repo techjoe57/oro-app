@@ -12,6 +12,7 @@ INSTRUCTIONS:
 # TODO: import Flask
 from flask import Flask
 from extensions import db
+from flask_cors import CORS
 
 # TODO: import config settings
 from config import Config
@@ -19,6 +20,7 @@ from config import Config
 from routes.auth_routes import auth_bp
 # TODO: initialize Flask app
 app = Flask(__name__)
+CORS(app)
 
 # TODO: load configurations from config.py
 app.config.from_object(Config)
@@ -30,7 +32,7 @@ from models import User
 with app.app_context():
      db.create_all()
 # TODO: register routes (e.g., auth routes)
-app.register_blueprint(auth_bp, url_prefix="/auth")
+app.register_blueprint(auth_bp) #url_prefix="/auth" was removed
 
 print(app.config["SQLALCHEMY_DATABASE_URI"])
 
